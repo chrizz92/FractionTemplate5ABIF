@@ -10,7 +10,7 @@ namespace FractionTests
         public void GetNumerator_SetNumerator_ShouldReturnSettedValue()
         {
             Fraction.Fraction fraction = new Fraction.Fraction();
-            fraction.Numerator=3;
+            fraction.Numerator = 3;
             Assert.AreEqual(3, fraction.Numerator);
         }
 
@@ -18,7 +18,7 @@ namespace FractionTests
         public void GetDenominator_SetDenominator_ShouldReturnSettedValue()
         {
             Fraction.Fraction fraction = new Fraction.Fraction();
-            fraction.Denominator=3;
+            fraction.Denominator = 3;
             Assert.AreEqual(3, fraction.Denominator);
         }
 
@@ -26,7 +26,7 @@ namespace FractionTests
         public void IsValid_SetOnlyNumerator_ShouldReturnInvalid()
         {
             Fraction.Fraction fraction = new Fraction.Fraction();
-            fraction.Numerator=3;
+            fraction.Numerator = 3;
             Assert.IsFalse(fraction.IsValid);
         }
 
@@ -34,8 +34,8 @@ namespace FractionTests
         public void IsValid_SetNumeratorAndDenominator_ShouldReturnValid()
         {
             Fraction.Fraction fraction = new Fraction.Fraction();
-            fraction.Numerator=3;
-            fraction.Denominator=4;
+            fraction.Numerator = 3;
+            fraction.Denominator = 4;
             Assert.IsTrue(fraction.IsValid);
         }
 
@@ -98,8 +98,8 @@ namespace FractionTests
         public void GetNumerator_FractionCannotBeShortened_ShouldReturnOriginalValue()
         {
             Fraction.Fraction fraction = new Fraction.Fraction();
-            fraction.Numerator=8;
-            fraction.Denominator=19;
+            fraction.Numerator = 8;
+            fraction.Denominator = 19;
             Assert.AreEqual(8, fraction.Numerator);
         }
 
@@ -107,8 +107,8 @@ namespace FractionTests
         public void GetDenominator_FractionCannotBeShortened_ShouldReturnOriginalValue()
         {
             Fraction.Fraction fraction = new Fraction.Fraction();
-            fraction.Numerator=8;
-            fraction.Denominator=19;
+            fraction.Numerator = 8;
+            fraction.Denominator = 19;
             Assert.AreEqual(19, fraction.Denominator);
         }
 
@@ -116,8 +116,8 @@ namespace FractionTests
         public void GetNumerator_FractionCanBeShortened_ShouldReturnShortenedValue()
         {
             Fraction.Fraction fraction = new Fraction.Fraction();
-            fraction.Numerator=8;
-            fraction.Denominator=28;
+            fraction.Numerator = 8;
+            fraction.Denominator = 28;
             Assert.AreEqual(2, fraction.Numerator);
         }
 
@@ -125,8 +125,8 @@ namespace FractionTests
         public void GetDenominator_FractionCanBeShortened_ShouldReturnShortenedValue()
         {
             Fraction.Fraction fraction = new Fraction.Fraction();
-            fraction.Numerator=8;
-            fraction.Denominator=28;
+            fraction.Numerator = 8;
+            fraction.Denominator = 28;
             Assert.AreEqual(7, fraction.Denominator);
         }
 
@@ -134,7 +134,7 @@ namespace FractionTests
         public void GetValue_InvalidDenominator_ShouldReturnMaxValue()
         {
             Fraction.Fraction fraction = new Fraction.Fraction();
-            fraction.Numerator=3;
+            fraction.Numerator = 3;
             Assert.AreEqual(Double.MaxValue, fraction.GetValue(), 0.01);
         }
 
@@ -142,8 +142,8 @@ namespace FractionTests
         public void GetValue_FractionIsValid_ShouldReturnDoubleValue()
         {
             Fraction.Fraction fraction = new Fraction.Fraction();
-            fraction.Numerator=3;
-            fraction.Denominator=4;
+            fraction.Numerator = 3;
+            fraction.Denominator = 4;
             Assert.AreEqual(0.75, fraction.GetValue(), 0.01);
         }
 
@@ -153,10 +153,10 @@ namespace FractionTests
             // Ungleiche Brüche
             Fraction.Fraction fraction = new Fraction.Fraction();
             Fraction.Fraction other = new Fraction.Fraction();
-            fraction.Numerator=3;
-            fraction.Denominator=4;
-            other.Numerator=7;
-            other.Denominator=5;
+            fraction.Numerator = 3;
+            fraction.Denominator = 4;
+            other.Numerator = 7;
+            other.Denominator = 5;
             Assert.IsFalse(fraction.IsEqual(other));
         }
 
@@ -166,10 +166,10 @@ namespace FractionTests
             // Ungleiche Brüche
             Fraction.Fraction fraction = new Fraction.Fraction();
             Fraction.Fraction other = new Fraction.Fraction();
-            fraction.Numerator=3;
-            fraction.Denominator=4;
-            other.Numerator=6;
-            other.Denominator=8;
+            fraction.Numerator = 3;
+            fraction.Denominator = 4;
+            other.Numerator = 6;
+            other.Denominator = 8;
             Assert.IsTrue(fraction.IsEqual(other));
         }
 
@@ -179,19 +179,18 @@ namespace FractionTests
             // Ungleiche Brüche
             Fraction.Fraction fraction = new Fraction.Fraction();
             Fraction.Fraction other = new Fraction.Fraction();
-            fraction.Numerator=3;
-            fraction.Denominator=1;
-            other.Numerator=6;
-            other.Denominator=0;
+            fraction.Numerator = 3;
+            fraction.Denominator = 1;
+            other.Numerator = 6;
+            other.Denominator = 0;
             Assert.IsFalse(fraction.IsEqual(other));
         }
-
 
         [TestMethod()]
         public void ConvertToString_DenominatorNotInitialized_ShouldReturnErrorText()
         {
             Fraction.Fraction fraction = new Fraction.Fraction();
-            fraction.Numerator=3;
+            fraction.Numerator = 3;
             string actual = fraction.ConvertToString();
             string expected = "denominator is not initialized";
             Assert.AreEqual(expected, actual);
@@ -201,8 +200,8 @@ namespace FractionTests
         public void ConvertToString_DenominatorIs0_ShouldReturnErrorText()
         {
             Fraction.Fraction fraction = new Fraction.Fraction();
-            fraction.Numerator=3;
-            fraction.Denominator=0;
+            fraction.Numerator = 3;
+            fraction.Denominator = 0;
             string actual = fraction.ConvertToString();
             string expected = "denominator is set to 0";
             Assert.AreEqual(expected, actual);
@@ -212,8 +211,8 @@ namespace FractionTests
         public void ConvertToString_FractionCanBeShortened_ShouldReturnShortenedText()
         {
             Fraction.Fraction fraction = new Fraction.Fraction();
-            fraction.Numerator=6;
-            fraction.Denominator=8;
+            fraction.Numerator = 6;
+            fraction.Denominator = 8;
             string actual = fraction.ConvertToString();
             string expected = "3/4";
             Assert.AreEqual(expected, actual);
@@ -223,12 +222,11 @@ namespace FractionTests
         public void ConvertToString_FractionCannotBeShortened_ShouldReturnCorrectText()
         {
             Fraction.Fraction fraction = new Fraction.Fraction();
-            fraction.Numerator=3;
-            fraction.Denominator=4;
+            fraction.Numerator = 3;
+            fraction.Denominator = 4;
             string actual = fraction.ConvertToString();
             string expected = "3/4";
             Assert.AreEqual(expected, actual);
         }
-
     }
 }
