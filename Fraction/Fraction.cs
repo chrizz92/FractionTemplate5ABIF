@@ -80,7 +80,11 @@ namespace Fraction
         /// <returns>Sind die beiden Brüche gleich?</returns>
         public bool IsEqual(Fraction other)
         {
-            throw new NotImplementedException();
+            if (this.Numerator == other.Numerator && this.Denominator == other.Denominator)
+            {
+                return true;
+            }
+            return false;
         }
 
         /// <summary>
@@ -166,7 +170,27 @@ namespace Fraction
         /// <returns>Ergebnisbruchzahl oder null im Fehlerfall</returns>
         public static Fraction Add(Fraction a, Fraction b)
         {
-            throw new NotImplementedException();
+            Fraction result = null;
+            if (a.IsValid && b.IsValid)
+            {
+                if (a.Denominator != b.Denominator)
+                {
+                    result.Denominator = a.Denominator * b.Denominator;
+                    result.Numerator = a.Numerator * b.Denominator + b.Numerator * a.Denominator;
+                    result.Shorten();
+                }
+                else
+                {
+                    result.Denominator = a.Denominator;
+                    result.Numerator = a.Numerator + b.Numerator;
+                }
+            }
+            return result;
+        }
+
+        public static Fraction operator +(Fraction a, Fraction b)
+        {
+            return Add(a, b);
         }
 
         /// <summary>
@@ -177,17 +201,59 @@ namespace Fraction
         /// <returns></returns>
         public static Fraction Sub(Fraction a, Fraction b)
         {
-            throw new NotImplementedException();
+            Fraction result = null;
+            if (a.IsValid && b.IsValid)
+            {
+                if (a.Denominator != b.Denominator)
+                {
+                    result.Denominator = a.Denominator * b.Denominator;
+                    result.Numerator = a.Numerator * b.Denominator - b.Numerator * a.Denominator;
+                    result.Shorten();
+                }
+                else
+                {
+                    result.Denominator = a.Denominator;
+                    result.Numerator = a.Numerator - b.Numerator;
+                }
+            }
+            return result;
+        }
+
+        public static Fraction operator -(Fraction a, Fraction b)
+        {
+            return Sub(a, b);
         }
 
         public static Fraction Mult(Fraction a, Fraction b)
         {
-            throw new NotImplementedException();
+            Fraction result = null;
+            if (a.IsValid && b.IsValid)
+            {
+                result.Numerator = a.Numerator * b.Numerator;
+                result.Denominator = a.Denominator * b.Denominator;
+            }
+            return result;
+        }
+
+        public static Fraction operator *(Fraction a, Fraction b)
+        {
+            return Mult(a, b);
         }
 
         public static Fraction Div(Fraction a, Fraction b)
         {
-            throw new NotImplementedException();
+            Fraction result = null;
+            if (a.IsValid && b.IsValid)
+            {
+                result.Numerator = a.Numerator * b.Denominator;
+                result.Denominator = a.Denominator * b.Numerator;
+            }
+            return result;
+        }
+
+        public static Fraction operator /(Fraction a, Fraction b)
+        {
+            return Div(a, b);
         }
     }
 }
