@@ -38,6 +38,10 @@ namespace Fraction
             set
             {
                 _numerator = value;
+                if (_denominator != 0)
+                {
+                    Shorten();
+                }
             }
         }
 
@@ -53,6 +57,11 @@ namespace Fraction
             set
             {
                 _denominator = value;
+                _isDenominatorSet = true;
+                if (_numerator != 0)
+                {
+                    Shorten();
+                }
             }
         }
 
@@ -80,7 +89,7 @@ namespace Fraction
         /// <returns>Sind die beiden Brüche gleich?</returns>
         public bool IsEqual(Fraction other)
         {
-            if (this.Numerator == other.Numerator && this.Denominator == other.Denominator)
+            if (other != null && this.Numerator == other.Numerator && this.Denominator == other.Denominator)
             {
                 return true;
             }
@@ -173,11 +182,11 @@ namespace Fraction
             Fraction result = null;
             if (a.IsValid && b.IsValid)
             {
+                result = new Fraction();
                 if (a.Denominator != b.Denominator)
                 {
                     result.Denominator = a.Denominator * b.Denominator;
                     result.Numerator = a.Numerator * b.Denominator + b.Numerator * a.Denominator;
-                    result.Shorten();
                 }
                 else
                 {
@@ -204,11 +213,11 @@ namespace Fraction
             Fraction result = null;
             if (a.IsValid && b.IsValid)
             {
+                result = new Fraction();
                 if (a.Denominator != b.Denominator)
                 {
                     result.Denominator = a.Denominator * b.Denominator;
                     result.Numerator = a.Numerator * b.Denominator - b.Numerator * a.Denominator;
-                    result.Shorten();
                 }
                 else
                 {
@@ -229,6 +238,7 @@ namespace Fraction
             Fraction result = null;
             if (a.IsValid && b.IsValid)
             {
+                result = new Fraction();
                 result.Numerator = a.Numerator * b.Numerator;
                 result.Denominator = a.Denominator * b.Denominator;
             }
@@ -245,6 +255,7 @@ namespace Fraction
             Fraction result = null;
             if (a.IsValid && b.IsValid)
             {
+                result = new Fraction();
                 result.Numerator = a.Numerator * b.Denominator;
                 result.Denominator = a.Denominator * b.Numerator;
             }
